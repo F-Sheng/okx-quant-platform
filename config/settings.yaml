@@ -1,0 +1,77 @@
+# OKX 量化交易平台配置文件
+
+# ============ 交易所配置 ============
+exchange:
+  name: OKX
+  trading_mode: demo  # demo=模拟盘, live=实盘
+  api_key: "YOUR_API_KEY_HERE"  # 替换为你的 API Key
+  secret_key: "YOUR_SECRET_KEY_HERE"  # 替换为你的 Secret Key
+  passphrase: "YOUR_PASSPHRASE_HERE"  # 替换为你的 Passphrase
+
+# ============ 通用配置 ============
+general:
+  base_currency: USDT  # 计价货币
+  timezone: Asia/Shanghai
+  log_level: INFO
+  log_dir: ./logs
+  database: ./data/quant.db
+
+# ============ 期现套利配置 ============
+basis_arbitrage:
+  enabled: true
+  symbols:
+    - BTC-USDT-SWAP
+    - ETH-USDT-SWAP
+  min_funding_rate: 0.0001  # 最小资金费率(0.01%)
+  max_position_usd: 10000  # 最大仓位(USD)
+  hedge_ratio: 1.0  # 对冲比例(1.0=完全对冲)
+  check_interval: 300  # 检查间隔(秒),5分钟
+
+# ============ 配对交易配置 ============
+pair_trading:
+  enabled: true
+  pairs:
+    - symbol1: BTC-USDT
+      symbol2: ETH-USDT
+      cointegration_window: 168  # 7天(小时)
+      zscore_threshold: 2.0
+      stop_loss_zscore: 3.5
+  max_position_usd: 5000
+  check_interval: 3600  # 1小时检查一次
+
+# ============ 做市策略配置 ============
+market_making:
+  enabled: false  # 暂时关闭
+  symbol: BTC-USDT-SWAP
+  spread_bps: 20  # 价差(basis points)
+  order_size_usd: 1000
+  max_inventory_usd: 10000
+  inventory_limit_pct: 0.3  # 库存限制(30%)
+  update_interval: 1  # 更新间隔(秒)
+
+# ============ 情绪分析配置 ============
+sentiment:
+  enabled: false  # 暂时关闭
+  deepseek_api_key: "YOUR_DEEPSEEK_API_KEY_HERE"  # 替换为你的 DeepSeek API Key
+  data_sources:
+    - twitter
+    - news
+  symbols:
+    - BTC
+    - ETH
+  check_interval: 1800  # 30分钟
+
+# ============ 风控配置 ============
+risk_management:
+  max_total_position_usd: 20000  # 最大总仓位
+  max_drawdown_pct: 0.15  # 最大回撤(15%)
+  daily_loss_limit_usd: 1000  # 日亏损限额
+  stop_loss_pct: 0.05  # 止损线(5%)
+
+# ============ 回测配置 ============
+backtest:
+  start_date: "2024-01-01"
+  end_date: "2024-12-31"
+  initial_capital_usd: 10000
+  fee_rate: 0.001  # 手续费(0.1%)
+  slippage: 0.0005  # 滑点(0.05%)

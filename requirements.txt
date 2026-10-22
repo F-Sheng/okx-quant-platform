@@ -1,0 +1,49 @@
+# OKX 量化交易平台依赖包
+# Python 3.14.3
+
+# OKX API SDK
+python-okx>=2.1.0
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+
+# 数据库
+# SQLite3 是 Python 内置模块,无需安装
+
+# 可视化
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 统计分析(配对交易)
+scipy>=1.11.0
+statsmodels>=0.14.0
+
+# WebSocket(实时数据)
+websocket-client>=1.6.0
+aiohttp>=3.8.0
+
+# 时间处理
+pytz>=2023.3
+python-dateutil>=2.8.2
+
+# 日志
+loguru>=0.7.0
+
+# 配置文件
+pyyaml>=6.0
+
+# 环境变量
+python-dotenv>=1.0.0
+
+# DeepSeek API(情绪分析用)
+openai>=1.0.0
+
+# HTTP 请求
+requests>=2.31.0
+
+# 进度条
+tqdm>=4.66.0
+
+# 技术指标
+pandas-ta>=0.3.14b0
